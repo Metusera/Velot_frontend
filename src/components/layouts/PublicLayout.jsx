@@ -10,180 +10,91 @@ const PublicLayout = ({ children }) => {
       <main className="flex-1 pt-16">{children}</main>
 
       {/* ─── FOOTER ─── */}
-      <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-secondary-500/10 to-primary-500/10 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* About */}
+      <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
+            {/* About & Links */}
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
-                  <span className="font-bold text-white text-lg">V</span>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
+                  <span className="font-bold text-white">V</span>
                 </div>
-                <span className="font-bold text-xl bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">
-                  VeloT Africa
-                </span>
+                <span className="font-bold text-lg text-white">VeloT Africa</span>
               </div>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-primary-400 rounded-full mt-2"></div>
-                  <span>Accelerating Africa's Tech Revolution</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-primary-400 rounded-full mt-2"></div>
-                  <span>Industry-leading training programs</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-primary-400 rounded-full mt-2"></div>
-                  <span>Career transformation through tech skills</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-semibold text-lg mb-6 text-white flex items-center gap-2">
-                <span className="w-6 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500"></span>
-                Quick Links
-              </h4>
-              <ul className="space-y-3 text-gray-300">
-                <li>
-                  <Link 
-                    to="/programs" 
-                    className="group flex items-center gap-2 hover:text-primary-300 transition-all duration-300"
-                  >
-                    <span className="w-2 h-2 bg-primary-500 rounded-full group-hover:scale-125 transition-transform"></span>
-                    <span>Programs</span>
-                  </Link>
-                </li>
-                <li>
-                  <a 
-                    href="#why" 
-                    className="group flex items-center gap-2 hover:text-primary-300 transition-all duration-300"
-                  >
-                    <span className="w-2 h-2 bg-primary-500 rounded-full group-hover:scale-125 transition-transform"></span>
-                    <span>Why Us</span>
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#" 
-                    className="group flex items-center gap-2 hover:text-primary-300 transition-all duration-300"
-                  >
-                    <span className="w-2 h-2 bg-primary-500 rounded-full group-hover:scale-125 transition-transform"></span>
-                    <span>Blog</span>
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#" 
-                    className="group flex items-center gap-2 hover:text-primary-300 transition-all duration-300"
-                  >
-                    <span className="w-2 h-2 bg-primary-500 rounded-full group-hover:scale-125 transition-transform"></span>
-                    <span>Resources</span>
-                  </a>
-                </li>
-              </ul>
+              <p className="text-gray-300 text-sm mb-3">
+                Accelerating Africa's Tech Revolution through industry-leading training programs.
+              </p>
+              <div className="flex gap-3 text-sm text-gray-300">
+                <Link to="/programs" className="hover:text-primary-400 transition">Programs</Link>
+                <span className="text-gray-600">|</span>
+                <a href="#" className="hover:text-primary-400 transition">About</a>
+                <span className="text-gray-600">|</span>
+                <a href="#" className="hover:text-primary-400 transition">Contact</a>
+              </div>
             </div>
 
             {/* Legal */}
             <div>
-              <h4 className="font-semibold text-lg mb-6 text-white flex items-center gap-2">
-                <span className="w-6 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500"></span>
-                Legal
-              </h4>
-              <ul className="space-y-3 text-gray-300">
-                {['Privacy Policy', 'Terms & Conditions', 'Refund Policy', 'Contact Us'].map((item) => (
-                  <li key={item}>
-                    <a 
-                      href="#" 
-                      className="group flex items-center gap-2 hover:text-primary-300 transition-all duration-300"
-                    >
-                      <span className="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full group-hover:scale-125 transition-transform"></span>
-                      <span>{item}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <h4 className="font-semibold text-white mb-3">Legal & Support</h4>
+              <div className="grid grid-cols-2 gap-2 text-sm text-gray-300">
+                <a href="#" className="hover:text-primary-400 transition">Privacy Policy</a>
+                <a href="#" className="hover:text-primary-400 transition">Terms</a>
+                <a href="#" className="hover:text-primary-400 transition">Refund Policy</a>
+                <a href="#" className="hover:text-primary-400 transition">Help Center</a>
+              </div>
             </div>
 
             {/* Newsletter */}
             <div>
-              <h4 className="font-semibold text-lg mb-6 text-white flex items-center gap-2">
-                <span className="w-6 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500"></span>
-                Stay Updated
-              </h4>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Subscribe for tech tips, industry insights, and course updates.
-              </p>
-              <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-                <div className="relative">
-                  <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="w-full rounded-xl border border-gray-700 bg-gray-800/50 backdrop-blur-sm px-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-transparent transition-all duration-300"
-                  />
-                  <div className="absolute inset-0 rounded-xl border border-transparent bg-gradient-to-r from-primary-500/0 to-secondary-500/0 group-hover:from-primary-500/20 group-hover:to-secondary-500/20 transition-all duration-300 pointer-events-none"></div>
-                </div>
+              <h4 className="font-semibold text-white mb-3">Stay Updated</h4>
+              <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  className="flex-1 rounded-lg border border-gray-700 bg-gray-800/50 px-3 py-2 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-transparent"
+                />
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 px-4 py-3 text-white text-sm font-semibold hover:from-primary-700 hover:to-secondary-700 transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl shadow-primary-500/20"
+                  className="rounded-lg bg-gradient-to-r from-primary-600 to-secondary-600 px-4 py-2 text-white text-sm font-semibold hover:from-primary-700 hover:to-secondary-700 transition"
                 >
-                  Subscribe Now
+                  Subscribe
                 </button>
               </form>
-              <p className="text-xs text-gray-400 mt-3">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
             </div>
           </div>
 
           {/* Bottom bar */}
-          <div className="border-t border-gray-700/50 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <p className="text-sm text-gray-400">
-              &copy; {new Date().getFullYear()} VeloT Africa. All rights reserved.
-            </p>
-            
+          <div className="border-t border-gray-700/50 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+            <div className="flex items-center gap-4 text-gray-400">
+              <span>&copy; {new Date().getFullYear()} VeloT Africa</span>
+              <span className="hidden sm:inline">•</span>
+              <span className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                10,000+ learners
+              </span>
+              <span className="hidden sm:inline">•</span>
+              <span>Industry certified</span>
+            </div>
+
             {/* Social Links */}
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {[
-                { name: 'Twitter', color: 'hover:text-blue-400', icon: '🐦' },
-                { name: 'LinkedIn', color: 'hover:text-blue-500', icon: '💼' },
-                { name: 'Facebook', color: 'hover:text-blue-600', icon: '📘' },
-                { name: 'Instagram', color: 'hover:text-pink-500', icon: '📸' },
-                { name: 'YouTube', color: 'hover:text-red-500', icon: '🎥' }
+                { name: 'Twitter', icon: '🐦' },
+                { name: 'LinkedIn', icon: '💼' },
+                { name: 'Facebook', icon: '📘' },
+                { name: 'Instagram', icon: '📸' },
+                { name: 'YouTube', icon: '🎥' }
               ].map((social) => (
                 <a
                   key={social.name}
                   href="#"
-                  className={`text-gray-400 ${social.color} transition-all duration-300 transform hover:scale-110 flex items-center gap-2`}
+                  className="text-gray-400 hover:text-primary-400 transition"
                   aria-label={social.name}
+                  title={social.name}
                 >
-                  <span className="text-lg">{social.icon}</span>
-                  <span className="text-sm hidden sm:inline">{social.name}</span>
+                  {social.icon}
                 </a>
               ))}
-            </div>
-          </div>
-
-          {/* Trust badges */}
-          <div className="mt-8 pt-8 border-t border-gray-700/50 flex flex-wrap items-center justify-center gap-6 text-gray-400 text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Trusted by 10,000+ learners</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <span>Industry certified programs</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              <span>24/7 learning support</span>
             </div>
           </div>
         </div>

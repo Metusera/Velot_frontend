@@ -20,6 +20,7 @@ export const GET_PUBLISHED_PROGRAMS = gql`
       status
       eventCount
       upcomingEventsCount
+      badges
       createdAt
       publishedAt
     }
@@ -47,6 +48,7 @@ export const GET_PROGRAM_BY_SLUG = gql`
       statusDisplay
       eventCount
       upcomingEventsCount
+      badges
       createdBy {
         id
         fullName
@@ -78,6 +80,10 @@ export const GET_ALL_PROGRAMS = gql`
       status
       statusDisplay
       eventCount
+      isNew
+      isHot
+      isProfessional
+      autoCalculateBadges
       createdBy {
         id
         fullName

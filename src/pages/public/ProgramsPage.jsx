@@ -106,9 +106,30 @@ const ProgramsPage = () => {
               <Link
                 key={program.id}
                 to={`/programs/${program.slug}`}
-                className="group bg-white rounded-xl p-7 border-l-4 border-primary-600 hover:shadow-xl transition-all duration-300"
+                className="group bg-white rounded-xl p-7 border-l-4 border-primary-600 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-3">
+                {/* Badges */}
+                {program.badges && program.badges.length > 0 && (
+                  <div className="absolute top-4 right-4 flex flex-col gap-2 items-end">
+                    {program.badges.includes('new') && (
+                      <span className="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full shadow-md">
+                        🆕 NEW
+                      </span>
+                    )}
+                    {program.badges.includes('hot') && (
+                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full shadow-md animate-pulse">
+                        🔥 HOT
+                      </span>
+                    )}
+                    {program.badges.includes('professional') && (
+                      <span className="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full shadow-md">
+                        ⭐ PRO
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                <div className="flex items-center gap-3 mb-3 pr-24">
                   <h3 className="text-xl font-bold text-secondary-600 group-hover:text-primary-600 transition-colors">
                     {program.title}
                   </h3>

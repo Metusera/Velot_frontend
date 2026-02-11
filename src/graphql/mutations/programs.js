@@ -9,6 +9,10 @@ export const CREATE_PROGRAM = gql`
     $price: Decimal!
     $level: String!
     $slug: String
+    $isNew: Boolean
+    $isHot: Boolean
+    $isProfessional: Boolean
+    $autoCalculateBadges: Boolean
   ) {
     createProgram(
       title: $title
@@ -18,6 +22,10 @@ export const CREATE_PROGRAM = gql`
       price: $price
       level: $level
       slug: $slug
+      isNew: $isNew
+      isHot: $isHot
+      isProfessional: $isProfessional
+      autoCalculateBadges: $autoCalculateBadges
     ) {
       success
       message
@@ -41,6 +49,10 @@ export const UPDATE_PROGRAM = gql`
     $price: Decimal
     $level: String
     $slug: String
+    $isNew: Boolean
+    $isHot: Boolean
+    $isProfessional: Boolean
+    $autoCalculateBadges: Boolean
   ) {
     updateProgram(
       id: $id
@@ -51,6 +63,10 @@ export const UPDATE_PROGRAM = gql`
       price: $price
       level: $level
       slug: $slug
+      isNew: $isNew
+      isHot: $isHot
+      isProfessional: $isProfessional
+      autoCalculateBadges: $autoCalculateBadges
     ) {
       success
       message

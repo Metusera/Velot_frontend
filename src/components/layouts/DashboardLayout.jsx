@@ -16,6 +16,7 @@ const sidebarLinks = [
   {
     label: 'Programs',
     path: '/dashboard/programs',
+    adminOnly: true,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -23,8 +24,30 @@ const sidebarLinks = [
     ),
   },
   {
+    label: 'My Enrollments',
+    path: '/dashboard/enrollments',
+    studentOnly: true,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Browse Programs',
+    path: '/programs',
+    studentOnly: true,
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    ),
+  },
+  {
     label: 'Categories',
     path: '/dashboard/categories',
+    adminOnly: true,
     icon: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
@@ -55,10 +78,14 @@ const sidebarLinks = [
 
 const DashboardLayout = ({ children }) => {
   const { user, logout } = useAuth();
-  const { isSuperAdmin } = usePermissions();
+  const { isSuperAdmin, currentUser } = usePermissions();
   const location = useLocation();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const userRole = currentUser?.role?.toLowerCase();
+  const isStudent = !isSuperAdmin() && userRole === 'learner';
+  const isAdmin = isSuperAdmin() || ['admin', 'editor', 'instructor'].includes(userRole);
 
   const handleLogout = () => {
     logout();
@@ -74,7 +101,7 @@ const DashboardLayout = ({ children }) => {
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-700">
           <Link to="/" className="text-xl font-bold text-primary-400">
-            Velot Admin
+            {isStudent ? 'VeloT Learning' : 'Velot Admin'}
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -88,7 +115,13 @@ const DashboardLayout = ({ children }) => {
 
         <nav className="mt-6 px-3">
           {sidebarLinks
-            .filter((link) => !link.superAdminOnly || isSuperAdmin())
+            .filter((link) => {
+              // Filter based on role permissions
+              if (link.superAdminOnly && !isSuperAdmin()) return false;
+              if (link.adminOnly && !isAdmin) return false;
+              if (link.studentOnly && !isStudent) return false;
+              return true;
+            })
             .map((link) => {
             const isActive = location.pathname === link.path;
             return (

@@ -12,6 +12,8 @@ import ProtectedRoute from './components/common/ProtectedRoute';
 // Public pages
 import HomePage from './pages/public/HomePage';
 import LoginPage from './pages/public/LoginPage';
+import SignUpPage from './pages/public/SignUpPage';
+import AcceptInvitationPage from './pages/public/AcceptInvitationPage';
 import ProgramsPage from './pages/public/ProgramsPage';
 import ProgramDetailPage from './pages/public/ProgramDetailPage';
 
@@ -22,6 +24,7 @@ import ProgramForm from './pages/dashboard/ProgramForm';
 import CategoriesPage from './pages/dashboard/CategoriesPage';
 import UsersPage from './pages/dashboard/UsersPage';
 import TestimonialsPage from './pages/dashboard/TestimonialsPage';
+import EnrollmentsPage from './pages/dashboard/EnrollmentsPage';
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
             {/* Public Routes — with Navbar & footer */}
             <Route path="/" element={<PublicLayout><HomePage /></PublicLayout>} />
             <Route path="/login" element={<PublicLayout><LoginPage /></PublicLayout>} />
+            <Route path="/signup" element={<PublicLayout><SignUpPage /></PublicLayout>} />
+            <Route path="/accept-invitation/:token" element={<PublicLayout><AcceptInvitationPage /></PublicLayout>} />
             <Route path="/programs" element={<PublicLayout><ProgramsPage /></PublicLayout>} />
             <Route path="/programs/:slug" element={<PublicLayout><ProgramDetailPage /></PublicLayout>} />
 
@@ -89,6 +94,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <DashboardLayout><TestimonialsPage /></DashboardLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/enrollments"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout><EnrollmentsPage /></DashboardLayout>
                 </ProtectedRoute>
               }
             />

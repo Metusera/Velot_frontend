@@ -77,12 +77,20 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              <Link
-                to="/login"
-                className="text-sm px-6 py-2 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors shadow-sm"
-              >
-                Sign In
-              </Link>
+              <>
+                <Link
+                  to="/login"
+                  className="text-sm px-4 py-2 font-medium text-secondary-700 hover:text-primary-600 transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/signup"
+                  className="text-sm px-6 py-2 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors shadow-sm"
+                >
+                  Sign Up
+                </Link>
+              </>
             )}
           </div>
 
@@ -115,7 +123,10 @@ const Navbar = () => {
                 <button onClick={handleLogout} className="block w-full text-left px-3 py-2 rounded-lg text-red-600 hover:bg-red-50 font-medium">Logout</button>
               </>
             ) : (
-              <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg bg-primary-600 text-white text-center font-semibold">Sign In</Link>
+              <>
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Sign In</Link>
+                <Link to="/signup" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg bg-primary-600 text-white text-center font-semibold">Sign Up</Link>
+              </>
             )}
           </div>
         </div>

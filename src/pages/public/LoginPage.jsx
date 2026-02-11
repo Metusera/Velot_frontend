@@ -17,7 +17,8 @@ const LoginPage = () => {
     onCompleted: (data) => {
       if (data.login.success) {
         authLogin(data.login.user, data.login.token, data.login.refreshToken);
-        navigate('/dashboard');
+        // Add small delay to allow React state to update before navigation
+        setTimeout(() => navigate('/dashboard'), 100);
       } else {
         setError(data.login.message);
       }

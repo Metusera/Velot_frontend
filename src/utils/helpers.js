@@ -36,7 +36,7 @@ export const getRoleDisplayName = (role) => {
     super_admin: 'Super Admin',
     admin: 'Admin',
     editor: 'Editor',
-    viewer: 'Viewer',
+    learner: 'Learner',
   };
   return roleMap[role] || role;
 };

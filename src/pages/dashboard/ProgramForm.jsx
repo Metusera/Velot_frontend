@@ -17,6 +17,10 @@ const ProgramForm = () => {
     price: '',
     level: 'beginner',
     slug: '',
+    isNew: false,
+    isHot: false,
+    isProfessional: false,
+    autoCalculateBadges: true,
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -41,6 +45,10 @@ const ProgramForm = () => {
           price: program.price || '',
           level: program.level || 'beginner',
           slug: program.slug || '',
+          isNew: program.isNew || false,
+          isHot: program.isHot || false,
+          isProfessional: program.isProfessional || false,
+          autoCalculateBadges: program.autoCalculateBadges !== undefined ? program.autoCalculateBadges : true,
         });
       }
     }
@@ -78,6 +86,12 @@ const ProgramForm = () => {
     setError('');
   };
 
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: checked }));
+    setError('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -97,6 +111,10 @@ const ProgramForm = () => {
       price: parseFloat(formData.price),
       level: formData.level,
       slug: formData.slug || undefined,
+      isNew: formData.isNew,
+      isHot: formData.isHot,
+      isProfessional: formData.isProfessional,
+      autoCalculateBadges: formData.autoCalculateBadges,
     };
 
     if (isEditing) {
@@ -266,6 +284,78 @@ const ProgramForm = () => {
               className="input-field"
               placeholder="web-development-bootcamp"
             />
+          </div>
+
+          {/* Badge Management */}
+          <div className="pt-4 border-t border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Badge Management</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Badges highlight special programs. Enable auto-calculate for automatic badging based on rules (NEW: published &lt; 30 days, HOT: &gt; 50 enrollments, PRO: advanced + long duration), or manually override specific badges below.
+            </p>
+
+            <div className="space-y-3">
+              {/* Auto Calculate Toggle */}
+              <label className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg cursor-pointer hover:bg-blue-100 transition">
+                <input
+                  type="checkbox"
+                  name="autoCalculateBadges"
+                  checked={formData.autoCalculateBadges}
+                  onChange={handleCheckboxChange}
+                  className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                />
+                <div className="flex-1">
+                  <span className="text-sm font-medium text-gray-900">Auto-calculate badges</span>
+                  <p className="text-xs text-gray-600 mt-0.5">Automatically assign badges based on program metrics</p>
+                </div>
+              </label>
+
+              {/* Manual Override Checkboxes */}
+              <div className="pl-7 space-y-2">
+                <p className="text-xs text-gray-500 mb-2">Manual overrides (only apply when auto-calculate is off):</p>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="isNew"
+                    checked={formData.isNew}
+                    onChange={handleCheckboxChange}
+                    disabled={formData.autoCalculateBadges}
+                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500 disabled:opacity-50"
+                  />
+                  <span className="text-sm text-gray-700">
+                    <span className="font-semibold text-green-600">NEW</span> badge
+                  </span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="isHot"
+                    checked={formData.isHot}
+                    onChange={handleCheckboxChange}
+                    disabled={formData.autoCalculateBadges}
+                    className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500 disabled:opacity-50"
+                  />
+                  <span className="text-sm text-gray-700">
+                    <span className="font-semibold text-red-600">HOT</span> badge
+                  </span>
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="isProfessional"
+                    checked={formData.isProfessional}
+                    onChange={handleCheckboxChange}
+                    disabled={formData.autoCalculateBadges}
+                    className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500 disabled:opacity-50"
+                  />
+                  <span className="text-sm text-gray-700">
+                    <span className="font-semibold text-purple-600">PROFESSIONAL</span> badge
+                  </span>
+                </label>
+              </div>
+            </div>
           </div>
 
           {/* Submit */}

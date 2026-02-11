@@ -9,7 +9,7 @@ export const usePermissions = () => {
     isSuperAdmin: () => hasPermission(ROLES.SUPER_ADMIN),
     isAdmin: () => hasPermission([ROLES.SUPER_ADMIN, ROLES.ADMIN]),
     isEditor: () => hasPermission([ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.EDITOR]),
-    isViewer: () => hasPermission([ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.EDITOR, ROLES.VIEWER]),
+    isLearner: () => hasPermission([ROLES.SUPER_ADMIN, ROLES.ADMIN, ROLES.EDITOR, ROLES.LEARNER]),
 
     // Check if user can perform specific actions
     canManageUsers: () => hasPermission(ROLES.SUPER_ADMIN),
