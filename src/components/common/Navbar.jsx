@@ -34,20 +34,12 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            {/* Arrow icon matching VeloT logo */}
-            <div className="flex items-center justify-center">
-              <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 28L20 8L26 20L38 20" stroke="#1F3A56" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M30 14L38 20L30 26" stroke="#D97635" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className="hidden sm:block leading-none">
-              <span className="block font-extrabold text-xl tracking-tight" style={{ lineHeight: '1.1' }}>
-                <span className="text-secondary-700">Velo</span><span className="text-primary-600">T</span>
-              </span>
-              <span className="block text-[10px] font-bold text-primary-600 tracking-[0.25em] uppercase">AFRICA</span>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/Logo.jpg"
+              alt="VeloT Africa"
+              className="h-14 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop nav */}

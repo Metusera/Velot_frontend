@@ -100,8 +100,9 @@ const DashboardLayout = ({ children }) => {
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:inset-auto`}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-700">
-          <Link to="/" className="text-xl font-bold text-primary-400">
-            {isStudent ? 'VeloT Learning' : 'Velot Admin'}
+          <Link to="/" className="flex items-center gap-2">
+            <img src="/Logo.jpg" alt="VeloT Africa" className="h-8 w-auto brightness-0 invert" />
+            {isStudent && <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider">Learning</span>}
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
