@@ -16,6 +16,7 @@ import SignUpPage from './pages/public/SignUpPage';
 import AcceptInvitationPage from './pages/public/AcceptInvitationPage';
 import ProgramsPage from './pages/public/ProgramsPage';
 import ProgramDetailPage from './pages/public/ProgramDetailPage';
+import ContactPage from './pages/public/ContactPage';
 
 // Dashboard pages
 import DashboardHome from './pages/dashboard/DashboardHome';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/accept-invitation/:token" element={<PublicLayout><AcceptInvitationPage /></PublicLayout>} />
             <Route path="/programs" element={<PublicLayout><ProgramsPage /></PublicLayout>} />
             <Route path="/programs/:slug" element={<PublicLayout><ProgramDetailPage /></PublicLayout>} />
+            <Route path="/contact" element={<PublicLayout><ContactPage /></PublicLayout>} />
 
             {/* Dashboard Routes — protected, with sidebar */}
             <Route

@@ -1,393 +1,402 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_PUBLISHED_PROGRAMS, GET_CATEGORIES } from '../../graphql/queries/programs';
 import { useAuth } from '../../hooks/useAuth';
-import { formatPrice } from '../../utils/helpers';
-
-const levelBadge = {
-  beginner: 'bg-green-100 text-green-700',
-  intermediate: 'bg-blue-100 text-blue-700',
-  advanced: 'bg-purple-100 text-purple-700',
-};
 
 const SERVICES = [
   {
-    title: 'Software Development',
-    desc: 'Custom applications and enterprise solutions built with modern frameworks and global best practices.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
+    label: 'Software',
+    title: 'Custom Software Development',
+    desc: 'We design and build robust web applications, mobile apps, and enterprise platforms tailored to solve real business problems — using modern technologies and global best practices.',
+    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=720&q=80',
+    imgAlt: 'Developer writing code on a monitor',
   },
   {
-    title: 'Internet of Things',
-    desc: 'IoT solutions for smart cities, agriculture, and industrial automation to drive operational efficiency.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-      </svg>
-    ),
+    label: 'IoT',
+    title: 'Internet of Things Solutions',
+    desc: 'Smart, connected solutions for agriculture, cities, and industry — helping organisations monitor, automate, and optimise their operations in real time across Africa and beyond.',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=720&q=80',
+    imgAlt: 'Circuit board representing IoT technology',
   },
   {
-    title: 'AI & Machine Learning',
-    desc: 'Intelligent systems that learn, adapt, and drive data-driven decision making for organisations.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
+    label: 'AI & ML',
+    title: 'Artificial Intelligence & Machine Learning',
+    desc: 'From predictive analytics to intelligent automation — we build AI-powered systems that help organisations make smarter, faster decisions with confidence.',
+    img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=720&q=80',
+    imgAlt: 'AI and machine learning visualization',
   },
   {
-    title: 'Data Analytics',
-    desc: 'Transforming raw data into actionable insights through sophisticated visualisation and analysis.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
+    label: 'Data',
+    title: 'Data Analytics & Reporting',
+    desc: 'We turn raw data into clear, actionable insights through dashboards, reporting tools, and advanced analysis — giving your organisation the intelligence it needs to grow.',
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=720&q=80',
+    imgAlt: 'Data analytics dashboard on screen',
   },
   {
-    title: 'Tech Training',
-    desc: 'Hands-on programs in software, IoT, AI, and cloud designed to upskill Africa\'s next generation.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-      </svg>
-    ),
+    label: 'Training',
+    title: 'Technology Training & Capacity Building',
+    desc: "Industry-aligned, hands-on training in software engineering, IoT, AI, and cloud — designed to upskill Africa's next generation of tech professionals and leaders.",
+    img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=720&q=80',
+    imgAlt: 'Training workshop with participants',
   },
   {
-    title: 'IT Consulting',
-    desc: 'Strategic guidance on digital transformation, enterprise architecture, and technology adoption.',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-      </svg>
-    ),
+    label: 'Research',
+    title: 'Research & Innovation',
+    desc: 'Applied research in emerging technologies — from IoT sensor networks and AI models to data-driven policy insights — advancing knowledge that solves real-world challenges across Africa.',
+    img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=720&q=80',
+    imgAlt: 'Researcher working in a technology lab',
+  },
+];
+
+const TEAM = [
+  {
+    name: 'Faith Lwakabamba',
+    role: 'CEO',
+    bio: 'Visionary leader driving VeloT Africa\'s mission to accelerate digital transformation across the continent.',
+    img: '/faith.jpeg',
+    initials: 'FL',
+  },
+  {
+    name: 'Metusera NSENGIMANA',
+    role: 'Operation Manager',
+    bio: 'Oversees day-to-day operations and project execution, ensuring every engagement runs smoothly from start to finish.',
+    img: '/Metusera.jpeg',
+    initials: 'MN',
+  },
+  {
+    name: 'Kagabo Riziki',
+    role: 'General Manager',
+    bio: 'Drives company strategy and client relationships, aligning technology delivery with business objectives across all service areas.',
+    img: '/Riziki.jpg',
+    initials: 'KR',
   },
 ];
 
 const HomePage = () => {
   const { user } = useAuth();
-  const { data, loading } = useQuery(GET_PUBLISHED_PROGRAMS, {
-    variables: { category: null, level: null },
-  });
-  const { data: catData } = useQuery(GET_CATEGORIES);
-
-  const programs = data?.publishedPrograms || [];
-  const categories = catData?.categories || [];
 
   return (
-    <div>
+    <div className="font-sans">
 
       {/* ── 1. HERO ── */}
-      <section className="relative overflow-hidden bg-secondary-800 min-h-[90vh] flex items-center">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-600/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary-600/40 rounded-full blur-[100px]" />
-        </div>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background image */}
+        <img
+          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80"
+          alt="Technology workspace"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-secondary-900/80" />
+        {/* Gradient accent */}
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/60 via-transparent to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-
-            {/* Left */}
-            <div>
-              <img src="/Logo.jpg" alt="VeloT Africa" className="h-14 w-auto brightness-0 invert mb-8" />
-
-              <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-500/30 rounded-full px-4 py-1.5 mb-6">
-                <span className="w-2 h-2 bg-primary-400 rounded-full animate-pulse" />
-                <span className="text-sm text-primary-300 font-medium">Now Enrolling — 2026 Cohort</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight mb-5">
-                Innovating Technology.<br />
-                <span className="text-primary-400">Building Capacity.</span>
-              </h1>
-
-              <p className="text-gray-400 text-lg mb-8 max-w-lg leading-relaxed">
-                VeloT Africa delivers world-class technology solutions and practical training to accelerate digital transformation across the continent.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-12">
-                <Link to="/programs"
-                  className="px-7 py-3.5 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-500 transition-all shadow-lg shadow-primary-600/30">
-                  Explore Programs
-                </Link>
-                {!user && (
-                  <Link to="/signup"
-                    className="px-7 py-3.5 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all">
-                    Get Started Free
-                  </Link>
-                )}
-              </div>
-
-              <div className="flex gap-10 pt-8 border-t border-white/10">
-                {[
-                  { value: '200+', label: 'Active Learners' },
-                  { value: '10+', label: 'Programs' },
-                  { value: '95%', label: 'Success Rate' },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <p className="text-2xl font-extrabold text-white">{s.value}</p>
-                    <p className="text-sm text-gray-500 mt-0.5">{s.label}</p>
-                  </div>
-                ))}
-              </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-600/30 rounded-full px-4 py-1.5 mb-8">
+              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+              <span className="text-primary-300 text-sm font-semibold tracking-wide">Kigali, Rwanda</span>
             </div>
 
-            {/* Right — glass card */}
-            <div className="hidden lg:block">
-              <div className="relative ml-6">
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
-                  <div className="flex items-center gap-3 mb-6 pb-5 border-b border-white/10">
-                    <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-white font-bold text-sm">Fast-Track Learning</p>
-                      <p className="text-gray-500 text-xs">Industry-paced curriculum</p>
-                    </div>
-                  </div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6">
+              Innovating<br />
+              Technology.<br />
+              <span className="text-primary-400">Building Africa's</span><br />
+              <span className="text-primary-400">Digital Future.</span>
+            </h1>
 
-                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-4 font-semibold">Popular Tracks</p>
-                  <div className="space-y-5">
-                    {[
-                      { label: 'Software Development', progress: 88, color: 'bg-blue-500' },
-                      { label: 'Data Science & AI', progress: 74, color: 'bg-purple-500' },
-                      { label: 'Cloud & IoT', progress: 62, color: 'bg-primary-500' },
-                      { label: 'Cybersecurity', progress: 51, color: 'bg-green-500' },
-                    ].map((t) => (
-                      <div key={t.label}>
-                        <div className="flex justify-between text-xs mb-1.5">
-                          <span className="text-gray-300">{t.label}</span>
-                          <span className="text-white font-bold">{t.progress}%</span>
-                        </div>
-                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                          <div className={`h-full ${t.color} rounded-full`} style={{ width: `${t.progress}%` }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+            <p className="text-gray-300 text-xl sm:text-2xl mb-10 max-w-2xl leading-relaxed font-light">
+              We deliver cutting-edge software, IoT, AI, and data solutions — while training Africa's next generation of tech professionals.
+            </p>
 
-                  <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
-                    <div className="flex -space-x-2">
-                      {['bg-primary-500', 'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-400'].map((c, i) => (
-                        <div key={i} className={`w-7 h-7 ${c} rounded-full border-2 border-secondary-800 flex items-center justify-center text-white text-[10px] font-bold`}>
-                          {String.fromCharCode(65 + i)}
-                        </div>
-                      ))}
-                    </div>
-                    <span className="text-xs text-gray-400">+200 learners enrolled</span>
-                  </div>
-                </div>
-
-                <div className="absolute -top-4 -right-4 bg-primary-600 text-white px-4 py-2.5 rounded-2xl shadow-xl text-center">
-                  <p className="text-xs font-extrabold uppercase tracking-wider">Certified</p>
-                  <p className="text-[10px] text-primary-200">Programs</p>
-                </div>
-              </div>
+            <div className="flex flex-wrap gap-4">
+              <a href="#services"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-bold rounded-full text-lg hover:bg-primary-500 transition-all shadow-xl shadow-primary-600/30">
+                Explore Our Services
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <Link to="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all backdrop-blur-sm">
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>
+
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* ── 2. SERVICES ── */}
-      <section id="services" className="py-20 bg-white">
+      {/* ── 2. MISSION & VISION ── */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <p className="text-primary-600 font-bold text-xs uppercase tracking-widest mb-3">What We Do</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary-700 mb-4">
-              Technology Solutions & Training
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="inline-block text-primary-600 font-bold text-sm uppercase tracking-widest bg-primary-50 px-4 py-1.5 rounded-full mb-4">Who We Are</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 mb-4 leading-tight">
+              Our Mission & Vision
             </h2>
-            <p className="text-gray-500 leading-relaxed">
-              From enterprise software to hands-on skills training — we equip individuals and organisations to thrive in the digital era.
+            <p className="text-gray-500 text-lg leading-relaxed">
+              Everything we do is guided by a clear purpose and an ambitious vision for Africa's technological future.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((s) => (
-              <div key={s.title}
-                className="group p-6 border border-gray-200 rounded-2xl hover:border-primary-400 hover:shadow-lg transition-all duration-200">
-                <div className="w-12 h-12 bg-secondary-50 border border-secondary-100 text-secondary-600 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                  {s.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="relative p-10 bg-secondary-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-shadow">
+              <div className="absolute top-0 right-0 w-56 h-56 bg-primary-600/10 rounded-full blur-3xl" />
+              <div className="relative">
+                <div className="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-600/30">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-                <h3 className="font-bold text-secondary-700 mb-2">{s.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
+                <p className="text-primary-400 text-sm font-bold uppercase tracking-widest mb-3">Mission</p>
+                <h3 className="text-2xl font-extrabold text-white mb-4">What Drives Us Every Day</h3>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  To empower African organisations and individuals through innovative technology solutions, applied research, and practical training — bridging the digital divide and building local capacity for sustainable growth.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative p-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl overflow-hidden hover:shadow-2xl transition-shadow">
+              <div className="absolute bottom-0 left-0 w-56 h-56 bg-white/10 rounded-full blur-3xl" />
+              <div className="relative">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <p className="text-white/70 text-sm font-bold uppercase tracking-widest mb-3">Vision</p>
+                <h3 className="text-2xl font-extrabold text-white mb-4">Where We're Headed</h3>
+                <p className="text-primary-100 leading-relaxed text-lg">
+                  To become Africa's leading technology partner — recognised for delivering world-class software, IoT, AI, and data solutions that transform industries and create a thriving ecosystem of skilled tech professionals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. SERVICES (alternating rows with photos) ── */}
+      <section id="services">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 text-center">
+          <span className="inline-block text-primary-600 font-bold text-sm uppercase tracking-widest bg-primary-50 px-4 py-1.5 rounded-full mb-4">What We Do</span>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 mb-4 leading-tight">
+            End-to-End Technology Solutions
+          </h2>
+          <p className="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto">
+            From building enterprise software to training your workforce — everything organisations need to thrive in the digital economy.
+          </p>
+        </div>
+
+        {SERVICES.map((svc, i) => {
+          const isEven = i % 2 === 0;
+          return (
+            <div key={svc.title} className={`py-6 ${isEven ? 'bg-white' : 'bg-gray-50'}`}>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center`}>
+
+                  {/* Photo */}
+                  <div className="w-full md:w-5/12 flex-shrink-0">
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl h-72 sm:h-80">
+                      <img
+                        src={svc.img}
+                        alt={svc.imgAlt}
+                        className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                      />
+                      {/* label badge over image */}
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-primary-600 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow">
+                          {svc.label}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div className="w-full md:w-7/12">
+                    <span className="inline-block text-primary-600 font-bold text-xs uppercase tracking-widest bg-primary-50 px-3 py-1 rounded-full mb-4">
+                      {svc.label}
+                    </span>
+                    <h3 className="text-3xl sm:text-4xl font-extrabold text-secondary-800 mb-4 leading-tight">
+                      {svc.title}
+                    </h3>
+                    <p className="text-gray-500 text-lg leading-relaxed mb-7">
+                      {svc.desc}
+                    </p>
+                    <Link to="/contact"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 bg-secondary-700 text-white font-semibold rounded-full hover:bg-primary-600 transition-all group shadow-lg">
+                      Get Started
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      {/* ── 4. WHY CHOOSE US ── */}
+      <section className="py-24 bg-secondary-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/20 px-4 py-1.5 rounded-full mb-4">Why VeloT Africa</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+              Built for Africa. Built for Impact.
+            </h2>
+            <p className="text-gray-400 text-lg leading-relaxed">
+              We combine world-class technical capability with deep local knowledge to deliver technology that creates lasting value.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: 'African-Focused', desc: 'Solutions engineered for African markets, challenges, and opportunities.', icon: '🌍' },
+              { title: 'Expert Team', desc: 'Seasoned engineers, scientists, and consultants across every tech domain.', icon: '👥' },
+              { title: 'End-to-End', desc: 'Full lifecycle ownership — from discovery to deployment and ongoing support.', icon: '🔄' },
+              { title: 'Proven Results', desc: 'Dozens of projects delivered and hundreds of professionals trained.', icon: '📈' },
+            ].map((item) => (
+              <div key={item.title}
+                className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/10 hover:border-primary-600/40 transition-all duration-200">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 3. PROGRAMS ── */}
-      <section id="courses" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10">
-            <div>
-              <p className="text-primary-600 font-bold text-xs uppercase tracking-widest mb-3">Learn With Us</p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary-700">Featured Programs</h2>
-            </div>
-            <Link to="/programs" className="mt-4 sm:mt-0 flex items-center gap-1 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors">
-              View all
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-
-          {/* Category chips */}
-          {categories.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-8">
-              {categories.slice(0, 7).map((cat) => (
-                <Link key={cat.id} to={`/programs?category=${cat.slug}`}
-                  className="px-4 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-600 hover:border-primary-400 hover:text-primary-600 hover:bg-primary-50 transition-all">
-                  {cat.name}
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <div className="animate-spin rounded-full h-10 w-10 border-[3px] border-gray-200 border-t-primary-600" />
-            </div>
-          ) : programs.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-              {programs.slice(0, 6).map((program) => (
-                <Link key={program.id} to={`/programs/${program.slug}`}
-                  className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
-                  {/* Thumbnail */}
-                  <div className="relative overflow-hidden h-44">
-                    {program.thumbnail ? (
-                      <img src={program.thumbnail} alt={program.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-secondary-600 to-secondary-800 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                      </div>
-                    )}
-
-                    {/* Badges */}
-                    <div className="absolute top-3 left-3 flex gap-1.5">
-                      {program.badges?.includes('new') && (
-                        <span className="px-2 py-0.5 bg-green-500 text-white text-xs font-bold rounded-md">NEW</span>
-                      )}
-                      {program.badges?.includes('hot') && (
-                        <span className="px-2 py-0.5 bg-red-500 text-white text-xs font-bold rounded-md animate-pulse">HOT</span>
-                      )}
-                      {program.badges?.includes('professional') && (
-                        <span className="px-2 py-0.5 bg-purple-600 text-white text-xs font-bold rounded-md">PRO</span>
-                      )}
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <span className={`px-2 py-0.5 text-xs font-semibold rounded-md ${levelBadge[program.level] || 'bg-white/80 text-gray-700'}`}>
-                        {program.levelDisplay || program.level}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-5">
-                    <p className="text-primary-600 text-xs font-bold uppercase tracking-wider mb-1.5">
-                      {program.category?.name}
-                    </p>
-                    <h3 className="font-bold text-secondary-700 mb-3 group-hover:text-primary-600 transition-colors leading-snug">
-                      {program.title}
-                    </h3>
-
-                    <div className="flex items-center gap-3 text-xs text-gray-400 mb-4">
-                      <span className="flex items-center gap-1">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {program.duration}
-                      </span>
-                      {program.eventCount > 0 && (
-                        <span className="flex items-center gap-1">
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                          {program.upcomingEventsCount} sessions
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <span className="text-lg font-extrabold text-secondary-700">{formatPrice(program.price)}</span>
-                      <span className="px-3 py-1.5 bg-primary-600 text-white text-xs font-bold rounded-lg group-hover:bg-primary-700 transition-colors">
-                        Enroll Now
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16 border border-dashed border-gray-300 rounded-2xl bg-white">
-              <svg className="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              <p className="text-gray-400">Programs coming soon. Stay tuned!</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* ── 4. STATS ── */}
-      <section className="py-16 bg-secondary-700">
+      {/* ── 5. STATS ── */}
+      <section className="py-20 bg-primary-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: '200+', label: 'Active Learners', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg> },
-              { value: '10+', label: 'Expert Programs', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg> },
-              { value: '8+', label: 'Expert Instructors', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg> },
-              { value: '95%', label: 'Success Rate', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> },
+              { value: '200+', label: 'Professionals Trained' },
+              { value: '50+', label: 'Projects Delivered' },
+              { value: '10+', label: 'Enterprise Clients' },
+              { value: '95%', label: 'Client Satisfaction' },
             ].map((s) => (
               <div key={s.label}>
-                <div className="flex justify-center mb-2 text-primary-400">{s.icon}</div>
-                <p className="text-3xl sm:text-4xl font-extrabold text-white">{s.value}</p>
-                <p className="text-gray-400 text-sm mt-1">{s.label}</p>
+                <p className="text-4xl sm:text-5xl font-extrabold text-white mb-1">{s.value}</p>
+                <p className="text-primary-100 text-sm font-medium">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 5. CTA ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-secondary-700 to-secondary-900 rounded-3xl p-10 sm:p-16 text-center relative overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-primary-600/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-60 h-60 bg-primary-500/10 rounded-full blur-3xl" />
-            </div>
-            <div className="relative">
-              <img src="/Logo.jpg" alt="VeloT Africa" className="h-10 mx-auto mb-6 brightness-0 invert opacity-80" />
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-                Ready to Transform Your Future?
-              </h2>
-              <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
-                Whether you're looking to upskill, build a product, or transform your organisation — VeloT Africa has the right solution for you.
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link to="/programs"
-                  className="px-8 py-3.5 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-500 transition-colors shadow-lg shadow-primary-600/30">
-                  Browse Programs
+      {/* ── 6. TEAM ── */}
+      <section id="team" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="inline-block text-primary-600 font-bold text-sm uppercase tracking-widest bg-primary-50 px-4 py-1.5 rounded-full mb-4">Our People</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 mb-4 leading-tight">
+              Meet the Team
+            </h2>
+            <p className="text-gray-500 text-lg leading-relaxed">
+              A passionate group of professionals working together to drive Africa's digital transformation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {TEAM.map((member) => (
+              <div key={member.name}
+                className="group text-center bg-gray-50 border border-gray-200 rounded-3xl overflow-hidden hover:border-primary-400 hover:shadow-2xl transition-all duration-300">
+                {/* Photo */}
+                <div className="relative h-60 overflow-hidden">
+                  <img
+                    src={member.img}
+                    alt={member.name}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  {/* Fallback initials */}
+                  <div className="hidden w-full h-full bg-secondary-700 items-center justify-center">
+                    <span className="text-white text-4xl font-extrabold">{member.initials}</span>
+                  </div>
+                  {/* Gradient overlay at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent" />
+                </div>
+                {/* Info */}
+                <div className="px-6 pb-8 pt-2">
+                  <h3 className="text-xl font-extrabold text-secondary-800 mb-0.5">{member.name}</h3>
+                  <p className="text-primary-600 text-sm font-bold mb-3 uppercase tracking-wide">{member.role}</p>
+                  <p className="text-sm text-gray-500 leading-relaxed">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. CONTACT CTA ── */}
+      <section id="contact" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative bg-secondary-800 rounded-3xl overflow-hidden">
+            {/* Background photo */}
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80"
+              alt="Team collaboration"
+              className="absolute inset-0 w-full h-full object-cover opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/90 to-secondary-800/70" />
+
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center p-12 sm:p-20">
+              <div>
+                <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/20 px-4 py-1.5 rounded-full mb-6">Get In Touch</span>
+                <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+                  Let's Build Something Great Together
+                </h2>
+                <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                  Have a project in mind, need a technology partner, or want to train your team? We'd love to hear from you.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <svg className="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    info@velotafrica.com
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <svg className="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    +250 780 000 000
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <svg className="w-5 h-5 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Kigali, Rwanda
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <Link to="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-600 text-white font-bold rounded-full text-lg hover:bg-primary-500 transition-all shadow-xl shadow-primary-600/30">
+                  Send Us a Message
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
-                {!user ? (
+                <Link to="/programs"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-all">
+                  Browse Our Programs
+                </Link>
+                {!user && (
                   <Link to="/signup"
-                    className="px-8 py-3.5 bg-white/10 text-white font-bold rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
-                    Create Free Account
-                  </Link>
-                ) : (
-                  <Link to="/dashboard"
-                    className="px-8 py-3.5 bg-white/10 text-white font-bold rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
-                    Go to Dashboard
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 text-white font-semibold rounded-full border border-white/10 hover:bg-white/10 transition-all">
+                    Create a Free Account
                   </Link>
                 )}
               </div>

@@ -209,7 +209,7 @@ const SignUpPage = () => {
                 autoComplete="name"
                 required
                 className="input-field"
-                placeholder="John Doe"
+                placeholder="faith lwakabamba"
                 value={formData.fullName}
                 onChange={handleChange}
               />

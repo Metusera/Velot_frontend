@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 
@@ -38,7 +38,7 @@ const Navbar = () => {
             <img
               src="/Logo.jpg"
               alt="VeloT Africa"
-              className="h-14 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
           </Link>
 
@@ -46,6 +46,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-1">
             <Link to="/" className={navLinkClass('/')}>Home</Link>
             <Link to="/programs" className={navLinkClass('/programs')}>Programs</Link>
+            <Link to="/reports" className={navLinkClass('/reports')}>Data & Reports</Link>
+            <Link to="/contact" className={navLinkClass('/contact')}>Contact</Link>
           </div>
 
           {/* Right side */}
@@ -108,6 +110,8 @@ const Navbar = () => {
           <div className="px-4 py-4 space-y-2">
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Home</Link>
             <Link to="/programs" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Programs</Link>
+            <Link to="/reports" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Data & Reports</Link>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Contact</Link>
             <hr className="my-2" />
             {user ? (
               <>

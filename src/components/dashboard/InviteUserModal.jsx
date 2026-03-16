@@ -74,7 +74,7 @@ const InviteUserModal = ({ isOpen, onClose, onSuccess }) => {
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 className="input-field"
                 required
-                placeholder="John Doe"
+                placeholder="metusera nsengimana"
               />
             </div>
 
