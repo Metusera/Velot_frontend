@@ -45,6 +45,8 @@ const Navbar = () => {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-1">
             <Link to="/" className={navLinkClass('/')}>Home</Link>
+            <a href="/#services" className="px-3 py-2 text-sm font-medium text-secondary-700 hover:text-primary-600 transition-colors">Services</a>
+            <a href="/#team" className="px-3 py-2 text-sm font-medium text-secondary-700 hover:text-primary-600 transition-colors">Our Team</a>
             <Link to="/contact" className={navLinkClass('/contact')}>Contact</Link>
           </div>
 
@@ -107,6 +109,8 @@ const Navbar = () => {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 space-y-2">
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Home</Link>
+            <a href="/#services" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Services</a>
+            <a href="/#team" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Our Team</a>
             <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Contact</Link>
             <hr className="my-2" />
             {user ? (
