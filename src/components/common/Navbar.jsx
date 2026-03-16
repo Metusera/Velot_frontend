@@ -45,8 +45,6 @@ const Navbar = () => {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-1">
             <Link to="/" className={navLinkClass('/')}>Home</Link>
-            <Link to="/programs" className={navLinkClass('/programs')}>Programs</Link>
-            <Link to="/reports" className={navLinkClass('/reports')}>Data & Reports</Link>
             <Link to="/contact" className={navLinkClass('/contact')}>Contact</Link>
           </div>
 
@@ -109,8 +107,6 @@ const Navbar = () => {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 space-y-2">
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Home</Link>
-            <Link to="/programs" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Programs</Link>
-            <Link to="/reports" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Data & Reports</Link>
             <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block px-3 py-2 rounded-lg text-secondary-600 hover:bg-gray-50 font-medium">Contact</Link>
             <hr className="my-2" />
             {user ? (

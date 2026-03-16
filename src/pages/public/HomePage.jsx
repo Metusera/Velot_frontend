@@ -279,10 +279,10 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: '200+', label: 'Professionals Trained' },
-              { value: '50+', label: 'Projects Delivered' },
-              { value: '10+', label: 'Enterprise Clients' },
-              { value: '95%', label: 'Client Satisfaction' },
+              { value: '50+', label: 'Professionals Trained' },
+              { value: '15+', label: 'Projects Delivered' },
+              { value: '5+', label: 'Enterprise Clients' },
+              { value: '90%', label: 'Client Satisfaction' },
             ].map((s) => (
               <div key={s.label}>
                 <p className="text-4xl sm:text-5xl font-extrabold text-white mb-1">{s.value}</p>
