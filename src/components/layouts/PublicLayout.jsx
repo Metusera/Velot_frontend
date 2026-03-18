@@ -25,7 +25,7 @@ const PublicLayout = ({ children }) => {
                 Accelerating Africa's Tech Revolution through industry-leading training programs.
               </p>
               <div className="flex gap-3 text-sm text-gray-300">
-                <Link to="/programs" className="hover:text-primary-400 transition">Programs</Link>
+                
                 <span className="text-gray-600">|</span>
                 <a href="#" className="hover:text-primary-400 transition">About</a>
                 <span className="text-gray-600">|</span>
