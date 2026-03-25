@@ -112,19 +112,24 @@ const TEAM = [
   },
 ];
 
+// Reusable badge
+const Badge = ({ children }) => (
+  <span className="inline-block font-bold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 bg-primary-50 text-primary-600 border border-primary-200 dark:bg-primary-600/15 dark:text-primary-400 dark:border-primary-600/30">
+    {children}
+  </span>
+);
+
 const HomePage = () => {
   const { user } = useAuth();
 
   return (
-    <div className="font-sans bg-secondary-900">
+    <div className="font-sans bg-white dark:bg-secondary-900">
 
       {/* ── 1. HERO ── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80"
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1920&q=80"
           alt="Technology workspace"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
+          className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 bg-secondary-900/85" />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/70 via-secondary-900/40 to-transparent" />
 
@@ -134,18 +139,14 @@ const HomePage = () => {
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
               <span className="text-primary-400 text-sm font-semibold tracking-wide">Kigali, Rwanda</span>
             </div>
-
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6">
-              Innovating<br />
-              Technology.<br />
+              Innovating<br />Technology.<br />
               <span className="text-primary-400">Building Africa's</span><br />
               <span className="text-primary-400">Digital Future.</span>
             </h1>
-
             <p className="text-gray-300 text-xl sm:text-2xl mb-10 max-w-2xl leading-relaxed font-light">
               We deliver cutting-edge software, IoT, AI, and data solutions — while training Africa's next generation of tech professionals.
             </p>
-
             <div className="flex flex-wrap gap-4">
               <a href="#services"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-bold rounded-full text-lg hover:bg-primary-500 transition-all shadow-xl shadow-primary-600/30">
@@ -161,54 +162,51 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-secondary-900 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white dark:from-secondary-900 to-transparent" />
       </section>
 
       {/* ── 2. MISSION & VISION ── */}
-      <section className="py-24 bg-secondary-900">
+      <section className="py-24 bg-white dark:bg-secondary-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-4 py-1.5 rounded-full mb-4">Who We Are</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+            <Badge>Who We Are</Badge>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 dark:text-white mb-4 leading-tight">
               Our Mission & Vision
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed">
+            <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
               Everything we do is guided by a clear purpose and an ambitious vision for Africa's technological future.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Mission */}
-            <div className="relative p-10 bg-secondary-800 border border-white/5 rounded-3xl overflow-hidden hover:border-primary-600/40 transition-all hover:shadow-2xl hover:shadow-primary-900/20">
-              <div className="absolute top-0 right-0 w-56 h-56 bg-primary-600/8 rounded-full blur-3xl" />
+            <div className="relative p-10 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-primary-300 dark:hover:border-primary-600/40 hover:shadow-xl transition-all">
+              <div className="absolute top-0 right-0 w-56 h-56 bg-primary-100/50 dark:bg-primary-600/8 rounded-full blur-3xl" />
               <div className="relative">
-                <div className="w-16 h-16 bg-primary-600/20 border border-primary-600/40 rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-primary-100 dark:bg-primary-600/20 border border-primary-200 dark:border-primary-600/40 rounded-2xl flex items-center justify-center mb-6">
+                  <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <p className="text-primary-400 text-sm font-bold uppercase tracking-widest mb-3">Mission</p>
-                <h3 className="text-2xl font-extrabold text-white mb-4">What Drives Us Every Day</h3>
-                <p className="text-gray-400 leading-relaxed text-lg">
+                <p className="text-primary-600 dark:text-primary-400 text-sm font-bold uppercase tracking-widest mb-3">Mission</p>
+                <h3 className="text-2xl font-extrabold text-secondary-800 dark:text-white mb-4">What Drives Us Every Day</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                   To empower African organisations and individuals through innovative technology solutions, applied research, and practical training — bridging the digital divide and building local capacity for sustainable growth.
                 </p>
               </div>
             </div>
 
-            {/* Vision */}
-            <div className="relative p-10 bg-secondary-800 border border-white/5 rounded-3xl overflow-hidden hover:border-primary-600/40 transition-all hover:shadow-2xl hover:shadow-primary-900/20">
-              <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary-600/8 rounded-full blur-3xl" />
+            <div className="relative p-10 bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-primary-300 dark:hover:border-primary-600/40 hover:shadow-xl transition-all">
+              <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary-100/50 dark:bg-primary-600/8 rounded-full blur-3xl" />
               <div className="relative">
-                <div className="w-16 h-16 bg-primary-600/20 border border-primary-600/40 rounded-2xl flex items-center justify-center mb-6">
-                  <svg className="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-primary-100 dark:bg-primary-600/20 border border-primary-200 dark:border-primary-600/40 rounded-2xl flex items-center justify-center mb-6">
+                  <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 </div>
-                <p className="text-primary-400 text-sm font-bold uppercase tracking-widest mb-3">Vision</p>
-                <h3 className="text-2xl font-extrabold text-white mb-4">Where We're Headed</h3>
-                <p className="text-gray-400 leading-relaxed text-lg">
+                <p className="text-primary-600 dark:text-primary-400 text-sm font-bold uppercase tracking-widest mb-3">Vision</p>
+                <h3 className="text-2xl font-extrabold text-secondary-800 dark:text-white mb-4">Where We're Headed</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
                   To become Africa's leading technology partner — recognised for delivering world-class software, IoT, AI, and data solutions that transform industries and create a thriving ecosystem of skilled tech professionals.
                 </p>
               </div>
@@ -218,13 +216,13 @@ const HomePage = () => {
       </section>
 
       {/* ── 3. SERVICES ── */}
-      <section id="services" className="bg-secondary-900">
+      <section id="services" className="bg-white dark:bg-secondary-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 text-center">
-          <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-4 py-1.5 rounded-full mb-4">What We Do</span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+          <Badge>What We Do</Badge>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 dark:text-white mb-4 leading-tight">
             End-to-End Technology Solutions
           </h2>
-          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
             From building enterprise software to training your workforce — everything organisations need to thrive in the digital economy.
           </p>
         </div>
@@ -232,19 +230,13 @@ const HomePage = () => {
         {SERVICES.map((svc, i) => {
           const isEven = i % 2 === 0;
           return (
-            <div key={svc.title} className="border-t border-white/5 bg-secondary-900">
+            <div key={svc.title} className="border-t border-gray-100 dark:border-white/5 bg-white dark:bg-secondary-900">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-14 items-center`}>
-
-                  {/* Photo */}
                   <div className="w-full md:w-5/12 flex-shrink-0">
-                    <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 sm:h-80 border border-white/10">
-                      <img
-                        src={svc.img}
-                        alt={svc.imgAlt}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-secondary-900/20" />
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 sm:h-80 border border-gray-200 dark:border-white/10">
+                      <img src={svc.img} alt={svc.imgAlt}
+                        className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" />
                       <div className="absolute top-4 left-4">
                         <span className="bg-primary-600 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">
                           {svc.label}
@@ -252,18 +244,12 @@ const HomePage = () => {
                       </div>
                     </div>
                   </div>
-
-                  {/* Text */}
                   <div className="w-full md:w-7/12">
-                    <span className="inline-block text-primary-400 font-bold text-xs uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-3 py-1 rounded-full mb-5">
-                      {svc.label}
-                    </span>
-                    <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">
+                    <Badge>{svc.label}</Badge>
+                    <h3 className="text-3xl sm:text-4xl font-extrabold text-secondary-800 dark:text-white mb-4 leading-tight">
                       {svc.title}
                     </h3>
-                    <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                      {svc.desc}
-                    </p>
+                    <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed mb-8">{svc.desc}</p>
                     <Link to="/contact"
                       className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-600 text-white font-semibold rounded-full hover:bg-primary-500 transition-all group shadow-lg shadow-primary-600/20">
                       Get Started
@@ -272,7 +258,6 @@ const HomePage = () => {
                       </svg>
                     </Link>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -281,27 +266,26 @@ const HomePage = () => {
       </section>
 
       {/* ── 4. WHY CHOOSE US ── */}
-      <section className="py-24 bg-secondary-900 border-t border-white/5">
+      <section className="py-24 bg-gray-50 dark:bg-secondary-900 border-t border-gray-100 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-4 py-1.5 rounded-full mb-4">Why VeloT Africa</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+            <Badge>Why VeloT Africa</Badge>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 dark:text-white mb-4 leading-tight">
               Built for Africa. Built for Impact.
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed">
+            <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
               We combine world-class technical capability with deep local knowledge to deliver technology that creates lasting value.
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {WHY_US.map((item) => (
               <div key={item.title}
-                className="group bg-secondary-800 border border-white/5 rounded-2xl p-7 hover:border-primary-600/40 hover:bg-secondary-700 transition-all duration-200">
-                <div className="w-14 h-14 bg-primary-600/15 border border-primary-600/30 text-primary-400 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
+                className="group bg-white dark:bg-secondary-800 border border-gray-200 dark:border-white/5 rounded-2xl p-7 hover:border-primary-300 dark:hover:border-primary-600/40 hover:shadow-xl dark:hover:bg-secondary-700 transition-all duration-200">
+                <div className="w-14 h-14 bg-primary-50 dark:bg-primary-600/15 border border-primary-200 dark:border-primary-600/30 text-primary-600 dark:text-primary-400 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
                   {item.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="text-lg font-bold text-secondary-800 dark:text-white mb-2">{item.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -315,7 +299,7 @@ const HomePage = () => {
             {[
               { value: '50+', label: 'Professionals Trained' },
               { value: '15+', label: 'Projects Delivered' },
-              { value: '5+', label: 'Enterprise Clients' },
+              { value: '5+',  label: 'Enterprise Clients' },
               { value: '90%', label: 'Client Satisfaction' },
             ].map((s) => (
               <div key={s.label}>
@@ -328,14 +312,14 @@ const HomePage = () => {
       </section>
 
       {/* ── 6. TEAM ── */}
-      <section id="team" className="py-24 bg-secondary-900 border-t border-white/5">
+      <section id="team" className="py-24 bg-white dark:bg-secondary-900 border-t border-gray-100 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-4 py-1.5 rounded-full mb-4">Our People</span>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+            <Badge>Our People</Badge>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-secondary-800 dark:text-white mb-4 leading-tight">
               Meet the Team
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed">
+            <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
               A passionate group of professionals working together to drive Africa's digital transformation.
             </p>
           </div>
@@ -343,37 +327,28 @@ const HomePage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {TEAM.map((member) => (
               <div key={member.name}
-                className="group text-center bg-secondary-800 border border-white/5 rounded-3xl overflow-hidden hover:border-primary-600/40 hover:shadow-2xl hover:shadow-primary-900/30 transition-all duration-300">
-                {/* Photo */}
+                className="group text-center bg-gray-50 dark:bg-secondary-800 border border-gray-200 dark:border-white/5 rounded-3xl overflow-hidden hover:border-primary-400 dark:hover:border-primary-600/40 hover:shadow-2xl transition-all duration-300">
                 <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={member.img}
-                    alt={member.name}
+                  <img src={member.img} alt={member.name}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
+                    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                   <div className="hidden w-full h-full bg-secondary-700 items-center justify-center absolute inset-0">
                     <span className="text-white text-4xl font-extrabold">{member.initials}</span>
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-secondary-800 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-50 dark:from-secondary-800 to-transparent" />
                 </div>
-                {/* Info */}
                 <div className="px-6 pb-7 pt-3">
-                  <h3 className="text-xl font-extrabold text-white mb-0.5">{member.name}</h3>
-                  <p className="text-primary-400 text-sm font-bold mb-5 uppercase tracking-wide">{member.role}</p>
-                  {/* Social links */}
+                  <h3 className="text-xl font-extrabold text-secondary-800 dark:text-white mb-0.5">{member.name}</h3>
+                  <p className="text-primary-600 dark:text-primary-400 text-sm font-bold mb-5 uppercase tracking-wide">{member.role}</p>
                   <div className="flex items-center justify-center gap-3">
                     <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                      className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all">
+                      className="w-10 h-10 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all shadow-sm">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                       </svg>
                     </a>
                     <a href={member.twitter} target="_blank" rel="noopener noreferrer"
-                      className="w-10 h-10 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:bg-white hover:text-secondary-900 hover:border-white transition-all">
+                      className="w-10 h-10 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-secondary-800 hover:text-white hover:border-secondary-800 transition-all shadow-sm">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                       </svg>
@@ -387,19 +362,18 @@ const HomePage = () => {
       </section>
 
       {/* ── 7. CONTACT CTA ── */}
-      <section id="contact" className="py-24 bg-secondary-800 border-t border-white/5">
+      <section id="contact" className="py-24 bg-gray-50 dark:bg-secondary-800 border-t border-gray-100 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl overflow-hidden border border-white/5">
-            <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80"
+          <div className="relative bg-secondary-800 dark:bg-secondary-900 rounded-3xl overflow-hidden border border-white/5">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80"
               alt="Team collaboration"
-              className="absolute inset-0 w-full h-full object-cover opacity-10"
-            />
+              className="absolute inset-0 w-full h-full object-cover opacity-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 to-secondary-800/80" />
-
             <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 items-center p-12 sm:p-20">
               <div>
-                <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-4 py-1.5 rounded-full mb-6">Get In Touch</span>
+                <span className="inline-block text-primary-400 font-bold text-sm uppercase tracking-widest bg-primary-600/15 border border-primary-600/30 px-4 py-1.5 rounded-full mb-6">
+                  Get In Touch
+                </span>
                 <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
                   Let's Build Something Great Together
                 </h2>
@@ -408,14 +382,14 @@ const HomePage = () => {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />, text: 'info@velotafrica.com' },
-                    { icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />, text: '+250 788 930 475' },
-                    { icon: <><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></>, text: 'Kigali, Rwanda' },
+                    { d: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', text: 'info@velotafrica.com' },
+                    { d: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', text: '+250 788 930 475' },
+                    { d: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z', text: 'Kigali, Rwanda' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 text-gray-300">
                       <div className="w-9 h-9 bg-primary-600/20 border border-primary-600/30 rounded-lg flex items-center justify-center flex-shrink-0">
                         <svg className="w-4 h-4 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          {item.icon}
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={item.d} />
                         </svg>
                       </div>
                       {item.text}
@@ -423,7 +397,6 @@ const HomePage = () => {
                   ))}
                 </div>
               </div>
-
               <div className="flex flex-col gap-4">
                 <Link to="/contact"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-600 text-white font-bold rounded-full text-lg hover:bg-primary-500 transition-all shadow-xl shadow-primary-600/30">

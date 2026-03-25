@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import client from './apollo/client';
 
 // Layouts
@@ -30,6 +31,7 @@ import EnrollmentsPage from './pages/dashboard/EnrollmentsPage';
 function App() {
   return (
     <ApolloProvider client={client}>
+      <ThemeProvider>
       <AuthProvider>
         <BrowserRouter>
           <Routes>
@@ -110,6 +112,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </AuthProvider>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }

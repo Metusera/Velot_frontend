@@ -4,12 +4,12 @@ import Navbar from '../../components/common/Navbar';
 
 const PublicLayout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-secondary-900 flex flex-col">
+    <div className="min-h-screen bg-white dark:bg-secondary-900 flex flex-col">
       <Navbar />
       <main className="flex-1 pt-20">{children}</main>
 
       {/* ─── FOOTER ─── */}
-      <footer className="bg-secondary-900 border-t border-white/5 text-white">
+      <footer className="bg-gray-50 dark:bg-secondary-900 border-t border-gray-200 dark:border-white/5 text-gray-800 dark:text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
             {/* About & Links */}
