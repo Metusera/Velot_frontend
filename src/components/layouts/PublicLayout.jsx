@@ -1,12 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '../../components/common/Navbar';
 
 const PublicLayout = ({ children }) => {
   return (
     <div className="min-h-screen bg-white dark:bg-secondary-900 flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-20">{children}</main>
+      <main className="flex-1 pt-32">{children}</main>
 
       {/* ─── FOOTER ─── */}
       <footer className="bg-gray-50 dark:bg-secondary-900 border-t border-gray-200 dark:border-white/5 text-gray-800 dark:text-white">

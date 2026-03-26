@@ -41,8 +41,11 @@ const SERVICES = [
     label: 'Research',
     title: 'Research & Innovation',
     desc: 'Applied research in emerging technologies — from IoT sensor networks and AI models to data-driven policy insights — advancing knowledge that solves real-world challenges across Africa.',
-    img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=720&q=80',
-    imgAlt: 'AI robot representing technology research and innovation',
+    icon: (
+      <svg className="w-20 h-20 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+      </svg>
+    ),
   },
 ];
 
@@ -235,8 +238,17 @@ const HomePage = () => {
                 <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-14 items-center`}>
                   <div className="w-full md:w-5/12 flex-shrink-0">
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl h-72 sm:h-80 border border-gray-200 dark:border-white/10">
-                      <img src={svc.img} alt={svc.imgAlt}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" />
+                      {svc.icon ? (
+                        <div className="w-full h-full bg-gradient-to-br from-secondary-800 to-secondary-900 flex flex-col items-center justify-center gap-6">
+                          <div className="w-32 h-32 bg-primary-600/15 border border-primary-600/30 rounded-3xl flex items-center justify-center">
+                            {svc.icon}
+                          </div>
+                          <span className="text-gray-400 text-sm font-semibold tracking-widest uppercase">{svc.label}</span>
+                        </div>
+                      ) : (
+                        <img src={svc.img} alt={svc.imgAlt}
+                          className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" />
+                      )}
                       <div className="absolute top-4 left-4">
                         <span className="bg-primary-600 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-lg">
                           {svc.label}

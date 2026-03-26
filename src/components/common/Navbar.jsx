@@ -39,13 +39,16 @@ const Navbar = () => {
         : ''
     }`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-28">
 
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <div className="bg-white rounded-xl px-3 py-1.5 shadow-md group-hover:shadow-lg transition-all duration-200">
-              <img src="/Logo.png" alt="VeloT Africa" className="h-10 w-auto object-contain" />
-            </div>
+            <img
+              src="/Logo.png"
+              alt="VeloT Africa"
+              className="h-24 w-auto object-contain bg-white rounded-2xl px-5 py-2 shadow-lg group-hover:shadow-xl transition-all duration-200"
+              style={{ minWidth: '200px' }}
+            />
           </Link>
 
           {/* Desktop nav pill — always dark for contrast over hero */}
