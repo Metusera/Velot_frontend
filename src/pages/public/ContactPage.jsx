@@ -85,7 +85,7 @@ const ContactPage = () => {
                   </div>
                 </a>
 
-                <a href="tel:+250788930475"
+                <a href="tel:+250780859921"
                   className="flex items-center gap-4 p-5 bg-white border border-gray-200 rounded-2xl hover:border-primary-400 hover:shadow-lg transition-all group">
                   <div className="w-12 h-12 bg-primary-50 border border-primary-100 text-primary-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary-600 group-hover:text-white transition-all">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
