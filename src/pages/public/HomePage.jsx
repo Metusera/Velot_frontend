@@ -136,36 +136,117 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-secondary-900/85" />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/70 via-secondary-900/40 to-transparent" />
 
+        {/* Floating application badge */}
+        <Link
+          to="/training"
+          className="absolute top-24 right-6 z-20 group animate-bounce hover:animate-none"
+        >
+          <div className="relative bg-green-500 text-white rounded-2xl px-4 py-3 shadow-2xl shadow-green-500/40 border border-green-400/50 backdrop-blur-sm hover:bg-green-400 transition-all max-w-[180px] text-center">
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 border-2 border-white animate-ping" />
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 border-2 border-white" />
+            <p className="text-xs font-bold uppercase tracking-widest mb-0.5 text-green-100">Applications</p>
+            <p className="text-base font-extrabold leading-tight">Open Now!</p>
+            <p className="text-xs text-green-200 mt-1">May – June 2026</p>
+            <p className="text-xs text-green-300 mt-0.5 group-hover:underline">Apply →</p>
+          </div>
+        </Link>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-500/40 rounded-full px-4 py-1.5 mb-8">
-              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-              <span className="text-primary-400 text-sm font-semibold tracking-wide">Kigali, Rwanda</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left — headline + CTAs */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-500/40 rounded-full px-4 py-1.5 mb-6">
+                <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+                <span className="text-primary-400 text-sm font-semibold tracking-wide">Kigali, Rwanda</span>
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-5">
+                Innovating<br />Technology.<br />
+                <span className="text-primary-400">Building Africa's</span><br />
+                <span className="text-primary-400">Digital Future.</span>
+              </h1>
+              <p className="text-gray-300 text-lg sm:text-xl mb-8 leading-relaxed font-light">
+                We deliver cutting-edge software, IoT, AI, and data solutions — while training Africa's next generation of tech professionals.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="#services"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-600 text-white font-bold rounded-full text-base hover:bg-primary-500 transition-all shadow-xl shadow-primary-600/30">
+                  Explore Services
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+                <Link to="/contact"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-full text-base border border-white/20 hover:bg-white/20 transition-all backdrop-blur-sm">
+                  Contact Us
+                </Link>
+              </div>
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6">
-              Innovating<br />Technology.<br />
-              <span className="text-primary-400">Building Africa's</span><br />
-              <span className="text-primary-400">Digital Future.</span>
-            </h1>
-            <p className="text-gray-300 text-xl sm:text-2xl mb-10 max-w-2xl leading-relaxed font-light">
-              We deliver cutting-edge software, IoT, AI, and data solutions — while training Africa's next generation of tech professionals.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#services"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-bold rounded-full text-lg hover:bg-primary-500 transition-all shadow-xl shadow-primary-600/30">
-                Explore Our Services
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-              <Link to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-full text-lg border border-white/20 hover:bg-white/20 transition-all backdrop-blur-sm">
-                Contact Us
-              </Link>
+
+            {/* Right — stats & highlights card */}
+            <div className="hidden lg:flex flex-col gap-4">
+              {/* Word cards */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { word: 'Innovate', desc: 'We push boundaries with next-gen technology' },
+                  { word: 'Empower', desc: 'Upskilling Africa\'s brightest minds in tech' },
+                  { word: 'Transform', desc: 'Turning bold ideas into real digital products' },
+                  { word: 'Connect', desc: 'Bridging businesses with smarter solutions' },
+                ].map(({ word, desc }) => (
+                  <div key={word} className="bg-white/8 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4 hover:bg-white/12 transition-all group">
+                    <div className="text-xl font-extrabold text-primary-400 mb-1 group-hover:text-primary-300 transition-colors">{word}</div>
+                    <div className="text-gray-400 text-xs leading-relaxed">{desc}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Service tags */}
+              <div className="bg-white/8 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4">
+                <p className="text-gray-400 text-xs font-semibold uppercase tracking-widest mb-3">What We Do</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Software Dev', 'IoT Solutions', 'AI & Data', 'Cloud', 'Cybersecurity', 'Tech Training'].map(tag => (
+                    <span key={tag} className="px-3 py-1 rounded-full bg-primary-600/20 border border-primary-500/30 text-primary-300 text-sm font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Trust badge */}
+              <div className="flex items-center gap-3 bg-white/8 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4">
+                <div className="w-10 h-10 rounded-full bg-primary-600/30 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-sm">Trusted Across Africa</p>
+                  <p className="text-gray-400 text-xs">Serving clients in Rwanda, Kenya, Uganda & beyond</p>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white dark:from-secondary-900 to-transparent" />
+      </section>
+
+      {/* ── TRAINING PROMO BANNER ── */}
+      <section className="bg-primary-600 dark:bg-primary-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="flex-shrink-0 w-3 h-3 rounded-full bg-green-300 animate-pulse" />
+            <p className="text-white font-semibold text-sm sm:text-base">
+              <span className="font-extrabold">Applications Open:</span> Professional Generative AI &amp; Data Analytics · 35,000 RWF · Tue &amp; Thu · 6PM–8:30PM · May – June 2026
+            </p>
+          </div>
+          <Link
+            to="/training"
+            className="flex-shrink-0 px-5 py-2 rounded-full bg-white text-primary-700 font-bold text-sm hover:bg-primary-50 transition-all shadow-md whitespace-nowrap"
+          >
+            Apply Now →
+          </Link>
+        </div>
       </section>
 
       {/* ── 2. MISSION & VISION ── */}

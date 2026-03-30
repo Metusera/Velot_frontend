@@ -18,6 +18,7 @@ import AcceptInvitationPage from './pages/public/AcceptInvitationPage';
 import ProgramsPage from './pages/public/ProgramsPage';
 import ProgramDetailPage from './pages/public/ProgramDetailPage';
 import ContactPage from './pages/public/ContactPage';
+import TrainingPage from './pages/public/TrainingPage';
 
 // Dashboard pages
 import DashboardHome from './pages/dashboard/DashboardHome';
@@ -43,6 +44,7 @@ function App() {
             <Route path="/programs" element={<PublicLayout><ProgramsPage /></PublicLayout>} />
             <Route path="/programs/:slug" element={<PublicLayout><ProgramDetailPage /></PublicLayout>} />
             <Route path="/contact" element={<PublicLayout><ContactPage /></PublicLayout>} />
+            <Route path="/training" element={<PublicLayout><TrainingPage /></PublicLayout>} />
 
             {/* Dashboard Routes — protected, with sidebar */}
             <Route

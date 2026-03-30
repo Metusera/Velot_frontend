@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { label: 'Home',     to: '/',             hash: '',          type: 'link'   },
   { label: 'Services', href: '/#services',  hash: '#services', type: 'anchor' },
   { label: 'Our Team', href: '/#team',      hash: '#team',     type: 'anchor' },
+  { label: 'Training', to: '/training',     hash: '',          type: 'link'   },
   { label: 'Contact',  to: '/contact',      hash: '',          type: 'link'   },
 ];
 
