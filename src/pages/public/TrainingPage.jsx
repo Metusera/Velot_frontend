@@ -10,10 +10,11 @@ const curriculum = [
 ];
 
 const highlights = [
-  { icon: '📅', label: 'Schedule', value: 'Tue & Thu · 6:00 PM – 8:30 PM' },
+  { icon: '📅', label: 'Schedule', value: 'Wed & Fri · 6:00 PM – 8:30 PM' },
   { icon: '🗓️', label: 'Dates', value: 'May – June 2026' },
   { icon: '💰', label: 'Fee', value: '35,000 RWF' },
   { icon: '🌐', label: 'Mode', value: 'Online & Physical' },
+  { icon: '📍', label: 'Location', value: 'Kigali, Rwanda' },
 ];
 
 const TrainingPage = () => {

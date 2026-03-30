@@ -88,6 +88,7 @@ const WHY_US = [
   },
 ];
 
+/* TEAM data — re-enable with the team section when ready
 const TEAM = [
   {
     name: 'Faith Lwakabamba',
@@ -114,6 +115,7 @@ const TEAM = [
     twitter: 'https://x.com/kagabo_riziki',
   },
 ];
+*/
 
 // Reusable badge
 const Badge = ({ children }) => (
@@ -237,7 +239,7 @@ const HomePage = () => {
           <div className="flex items-center gap-3">
             <span className="flex-shrink-0 w-3 h-3 rounded-full bg-green-300 animate-pulse" />
             <p className="text-white font-semibold text-sm sm:text-base">
-              <span className="font-extrabold">Applications Open:</span> Professional Generative AI &amp; Data Analytics · 35,000 RWF · Tue &amp; Thu · 6PM–8:30PM · May – June 2026
+              <span className="font-extrabold">Applications Open:</span> Professional Generative AI &amp; Data Analytics · 35,000 RWF · Wed &amp; Fri · 6PM–8:30PM · May – June 2026
             </p>
           </div>
           <Link
@@ -404,7 +406,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ── 6. TEAM ── */}
+      {/* ── 6. TEAM ── (hidden for now, re-enable when ready)
       <section id="team" className="py-24 bg-white dark:bg-secondary-900 border-t border-gray-100 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
@@ -453,6 +455,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      ── END TEAM ── */}
 
       {/* ── 7. CONTACT CTA ── */}
       <section id="contact" className="py-24 bg-gray-50 dark:bg-secondary-800 border-t border-gray-100 dark:border-white/5">
