@@ -101,7 +101,7 @@ const DashboardLayout = ({ children }) => {
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-700">
           <Link to="/" className="flex items-center gap-2">
-            <img src="/Logo.png" alt="VeloT Africa" className="h-8 w-auto brightness-0 invert" />
+            <img src="/Logo.jpg" alt="VeloT Africa" className="h-8 w-auto brightness-0 invert" />
             {isStudent && <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider">Learning</span>}
           </Link>
           <button

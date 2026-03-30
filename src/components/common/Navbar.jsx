@@ -39,15 +39,15 @@ const Navbar = () => {
         : ''
     }`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-28">
+        <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
-              src="/Logo.png"
+              src="/Logo.jpg"
               alt="VeloT Africa"
-              className="h-24 w-auto object-contain bg-white rounded-2xl px-5 py-2 shadow-lg group-hover:shadow-xl transition-all duration-200"
-              style={{ minWidth: '200px' }}
+              className="h-12 w-auto object-contain bg-white rounded-xl px-3 py-1 shadow-md group-hover:shadow-lg transition-all duration-200"
+              style={{ minWidth: '120px' }}
             />
           </Link>
 

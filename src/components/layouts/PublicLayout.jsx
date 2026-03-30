@@ -14,7 +14,7 @@ const PublicLayout = ({ children }) => {
             <div>
               <div className="mb-4">
                 <div className="bg-white inline-block rounded-xl px-3 py-1.5 mb-3">
-                  <img src="/Logo.png" alt="VeloT Africa" className="h-8 w-auto object-contain" />
+                  <img src="/Logo.jpg" alt="VeloT Africa" className="h-8 w-auto object-contain" />
                 </div>
               </div>
               <p className="text-gray-400 text-sm mb-3">
