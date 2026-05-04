@@ -29,7 +29,7 @@ const TrainingPage = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <div className="inline-flex items-center gap-2 bg-primary-600/20 border border-primary-500/40 rounded-full px-4 py-1.5 mb-6">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 text-sm font-semibold tracking-wide">Applications Open Now</span>
+            <span className="text-green-400 text-sm font-semibold tracking-wide">Training In Progress</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
             Professional Generative AI<br />
