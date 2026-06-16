@@ -138,22 +138,7 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-secondary-900/85" />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/70 via-secondary-900/40 to-transparent" />
 
-        {/* Floating application badge */}
-        <Link
-          to="/training"
-          className="absolute top-24 right-6 z-20 group animate-bounce hover:animate-none"
-        >
-          <div className="relative bg-green-500 text-white rounded-2xl px-4 py-3 shadow-2xl shadow-green-500/40 border border-green-400/50 backdrop-blur-sm hover:bg-green-400 transition-all max-w-[180px] text-center">
-            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 border-2 border-white animate-ping" />
-            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-red-500 border-2 border-white" />
-            <p className="text-xs font-bold uppercase tracking-widest mb-0.5 text-green-100">Applications</p>
-            <p className="text-base font-extrabold leading-tight">Open Now!</p>
-            <p className="text-xs text-green-200 mt-1">May – June 2026</p>
-            <p className="text-xs text-green-300 mt-0.5 group-hover:underline">Apply →</p>
-          </div>
-        </Link>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             {/* Left — headline + CTAs */}
@@ -234,22 +219,6 @@ const HomePage = () => {
       </section>
 
       {/* ── TRAINING PROMO BANNER ── */}
-      <section className="bg-primary-600 dark:bg-primary-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="flex-shrink-0 w-3 h-3 rounded-full bg-green-300 animate-pulse" />
-            <p className="text-white font-semibold text-sm sm:text-base">
-              <span className="font-extrabold">Applications Open:</span> Professional Generative AI &amp; Data Analytics · 35,000 RWF · Wed &amp; Fri · 6PM–8:30PM · May – June 2026
-            </p>
-          </div>
-          <Link
-            to="/training"
-            className="flex-shrink-0 px-5 py-2 rounded-full bg-white text-primary-700 font-bold text-sm hover:bg-primary-50 transition-all shadow-md whitespace-nowrap"
-          >
-            Apply Now →
-          </Link>
-        </div>
-      </section>
 
       {/* ── 2. MISSION & VISION ── */}
       <section className="py-24 bg-white dark:bg-secondary-900">
